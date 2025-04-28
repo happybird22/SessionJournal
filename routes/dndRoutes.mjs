@@ -52,20 +52,36 @@ router.post('/pcnotes', async (req, res, next) => {
 });
 
 // Read All
+router.get('/pcnotes', async (req, res, next) => {
+    const notes = await PCNotes.find();
+    res.json(notes);
+});
 
 // Read One
+router.get('/pcnotes/:id', async (req, res, next) => {
+    const note = await PCNotes.findById(req.params.id);
+    if (!note) {
+        return res.status(404).json({ message: 'Investigation check failed, no note found!'});
+    }
+    res.json(note);
+});
 
 // Update
+router.put('/pcnotes/:id', async (req, res, next) => {
+    const updatedNote = await PCNotes.findByIdAndUpdate(req.params.id, req.body);
+    if (!updatedNote) {
+        return res.status(404).json({ message: 'Investigation check failed, no note found!'});
+    }
+    res.json(updatedNote);
+});
 
 // Delete
+router.delete('/pcnotes/:id', async (req, res, next) => {
+    const deletedNote = await PCNotes.findByIdAndDelete(req.params.id);
+    if (!deletedNote) {
+        return res.status(404).json({ message: 'Crit success! No note found so there is nothing to delete'});
+    }
+    res.json({ message: 'Session note successfully deleted.'});
+});
 
-// --- DM Notes Routes ---
-// Create
-
-// Read All
-
-// Read One
-
-// Update
-
-// Delete
+export default router;
