@@ -1,8 +1,7 @@
 // Imports
 import express from 'express';
 import dotenv from 'dotenv';
-import inventoryItems from './utilities/data.mjs';
-
+import connectDB from './db/conn.mjs';
 
 // Setups
 dotenv.config();
