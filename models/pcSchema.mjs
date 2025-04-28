@@ -8,6 +8,7 @@ const pcSchema = new mongoose.Schema({
     SessionDate: {
         type: Date,
         required: true,
+        default: () => new Date(),
     },
     Notes: {
         type: String,
@@ -15,4 +16,4 @@ const pcSchema = new mongoose.Schema({
     },
 });
 
-export default mongoose.model('PC Notes', pcSchema)
+export default mongoose.model('PCNotes', pcSchema)

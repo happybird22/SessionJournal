@@ -1,3 +1,4 @@
+import { Timestamp } from 'mongodb';
 import mongoose from 'mongoose';
 
 const itemsSchema = new mongoose.Schema({
@@ -27,6 +28,7 @@ const itemsSchema = new mongoose.Schema({
     itemNotes: {
         type: String,
     },
+    Timestamp: true,
 });
 
 export default mongoose.model('Inventory', itemsSchema)

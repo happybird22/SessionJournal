@@ -5,14 +5,15 @@ const dmSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    SessionDate: {
+    sessionDate: {
         type: Date,
         required: true,
+        default: () => new Date(),
     },
-    Notes: {
+    notes: {
         type: String,
         required: true,
     },
 });
 
-export default mongoose.model('DM Notes', dmSchema)
+export default mongoose.model('DMNotes', dmSchema)
