@@ -2,6 +2,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './db/conn.mjs';
+import dndRoutes from './routes/dndRoutes.mjs';
+
 
 // Setups
 dotenv.config();
@@ -10,8 +12,9 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(express.json());
-
+connectDB();
 //Routes
+app.use('/api/inventory', dndRoutes);
 // app.get('/seed', async (req, res) => {
 //     await inventoryItems.create
 // })
