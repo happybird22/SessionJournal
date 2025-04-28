@@ -1,6 +1,8 @@
 import express from 'express';
 import DMNotes from '../models/dmSchema.mjs'
 
+const router = express.Router();
+
 // --- DM Notes Routes ---
 // Create
 router.post('/dmnotes', async (req, res, next) => {

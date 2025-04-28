@@ -28,8 +28,7 @@ const itemsSchema = new mongoose.Schema({
     },
     itemNotes: {
         type: String,
-    },
-    timestamp: true,
+    }
 });
 
 export default mongoose.model('Inventory', itemsSchema)
