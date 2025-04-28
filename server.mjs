@@ -3,7 +3,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './db/conn.mjs';
 import dndRoutes from './routes/dndRoutes.mjs';
-
+import dmRoutes from './routes/dmRoutes.mjs';
 
 // Setups
 dotenv.config();
@@ -15,6 +15,8 @@ app.use(express.json());
 connectDB();
 //Routes
 app.use('/api/inventory', dndRoutes);
+app.use('/api/pcnotes', dndRoutes);
+app.use('/api/dmnotes', dmRoutes);
 // app.get('/seed', async (req, res) => {
 //     await inventoryItems.create
 // })

@@ -8,6 +8,7 @@ const itemsSchema = new mongoose.Schema({
     itemType: {
         type: String,
         required: true,
+        index: true,
         enum: [
             'weapon',
             'scroll',
@@ -23,6 +24,7 @@ const itemsSchema = new mongoose.Schema({
     magic: {
         type: Boolean,
         required: true,
+        index: true
     },
     itemNotes: {
         type: String,

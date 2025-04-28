@@ -4,6 +4,7 @@ const pcSchema = new mongoose.Schema({
     playerName: {
         type: String,
         required: true,
+        index: true
     },
     SessionDate: {
         type: Date,
@@ -15,5 +16,7 @@ const pcSchema = new mongoose.Schema({
         required: true,
     },
 });
+
+pcSchema.index({ sessionDate: 1 });
 
 export default mongoose.model('PCNotes', pcSchema)
