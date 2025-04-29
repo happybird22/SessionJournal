@@ -11,7 +11,7 @@ const pcSchema = new mongoose.Schema({
         required: true,
         default: () => new Date(),
     },
-    Notes: {
+    notes: {
         type: String,
         required: true,
     },
