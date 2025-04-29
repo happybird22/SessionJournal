@@ -1,18 +1,32 @@
-import mongoose from 'mongoose';
+// import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-const connectionStr = process.env.mongoURI || '';
+// const connectionStr = process.env.mongoURI || '';
 
-async function connectDB() {
+// async function connectDB() {
+//   try {
+//     await mongoose.connect(connectionStr);
+
+//     console.log(`MongoDB Connected...`);
+//   } catch (err) {
+//     console.error(err);
+//   }
+// }
+
+// export default connectDB;
+
+import mongoose from 'mongoose';
+
+const connectDB = async () => {
   try {
-    await mongoose.connect(connectionStr);
-
-    console.log(`MongoDB Connected...`);
+    await mongoose.connect(process.env.mongoURI);
+    console.log('MongoDB Connected...');
   } catch (err) {
     console.error(err);
+    process.exit(1);
   }
-}
+};
 
 export default connectDB;

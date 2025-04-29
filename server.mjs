@@ -9,7 +9,7 @@ import pcRoutes from './routes/pcRoutes.mjs';
 //Imports for seeding
 import inventoryItems from './utilities/itemsData.mjs';
 import pcNotes from './utilities/pcData.mjs';
-import dmNotes from './utilities/gmData.mjs';
+import dmNotes from './utilities/dmData.mjs';
 
 import Inventory from './models/itemsSchema.mjs';
 import PCNotes from './models/pcSchema.mjs';
@@ -22,7 +22,7 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(express.json());
-connectDB();
+// connectDB();
 
 //Routes
 app.use('/api/inventory', itemRoutes);
@@ -32,6 +32,12 @@ app.use('/api/pcnotes', pcRoutes)
 // Seed Route
 app.get('/api/seed', async (req, res) => {
     try {
+        //Clear old data
+        await Inventory.deleteMany();
+        await PCNotes.deleteMany();
+        await DMNotes.deleteMany();
+
+        // Insert new sample data
         await Inventory.insertMany(inventoryItems);
         await PCNotes.insertMany(pcNotes);
         await DMNotes.insertMany(dmNotes);
@@ -50,6 +56,14 @@ app.use((err, _req, res, next) => {
   });
 
 // Listeners
-app.listen(PORT, () => {
-    console.log(`Server running on Port: ${PORT}`);
-});
+// Connect DB, then start server
+connectDB().then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server running on Port: ${PORT}`);
+    });
+  }).catch((err) => {
+    console.error('Failed to connect to database', err);
+  });
+// app.listen(PORT, () => {
+//     console.log(`Server running on Port: ${PORT}`);
+// });
